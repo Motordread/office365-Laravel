@@ -18,7 +18,6 @@ class Office365
     {
         $config = $app->make('config');
 
-
         $this->graph = new Graph();
 
         $this->client = new GenericProvider([
@@ -47,10 +46,9 @@ class Office365
 
         return [
             'token'        => $accessToken->getToken(),
-            'RefreshToken' => $accessToken->getRefreshToken(),
+            'refreshToken' => $accessToken->getRefreshToken(),
             'expires'      => $accessToken->getExpires(),
         ];
-
     }
 
     public function getUserInfo($user_access_token)
@@ -65,7 +63,6 @@ class Office365
 
     public function getEmails($user_access_token, $limit = 10)
     {
-
         $this->graph->setAccessToken($user_access_token);
 
         $messageQueryParams = [
