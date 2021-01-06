@@ -51,6 +51,19 @@ class Office365
         ];
     }
 
+    public function refreshToken($refresh_token)
+    {
+        $accessToken = $this->client->getAccessToken('refresh_token', [
+            'refresh_token' => $refresh_token
+        ]);
+
+        return [
+            'token'        => $accessToken->getToken(),
+            'refreshToken' => $accessToken->getRefreshToken(),
+            'expires'      => $accessToken->getExpires(),
+        ];
+    }
+
     public function getUserInfo($user_access_token)
     {
         $this->graph->setAccessToken($user_access_token);
